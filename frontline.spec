@@ -1,12 +1,12 @@
 #
 # Conditional build:
-%bcond_with	gimp	# without GIMP 1.2.x plugin
+%bcond_with	gimp	# build GIMP (1.2.x only) plugin
 #
 Summary:	GUI FRONT end for autotrace that extracts outLINE from images
 Summary(pl):	Graficzny interfejs do autotrace wyci±gaj±cego obrysy z obrazków
 Name:		frontline
 Version:	0.5.4
-Release:	5
+Release:	6
 License:	GPL
 Group:		X11/Applications/Graphics
 Source0:	http://dl.sourceforge.net/autotrace/%{name}-%{version}.tar.gz
@@ -25,7 +25,7 @@ BuildRequires:	libart_lgpl >= 2.3.8
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
 BuildRequires:	popt-devel
-Requires:	%{name}-libs = %{version}
+Requires:	%{name}-libs = %{version}-%{release}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %if %{with gimp}
@@ -61,7 +61,7 @@ wszystkie wersje interfejsu Frontline.
 Summary:	Frontline development files
 Summary(pl):	Pliki dla programistów u¿ywaj±cych Frontline
 Group:		X11/Development/Libraries
-Requires:	%{name}-libs = %{version}
+Requires:	%{name}-libs = %{version}-%{release}
 
 %description devel
 Frontline development files.
@@ -73,7 +73,7 @@ Pliki dla programistów u¿ywaj±cych Frontline.
 Summary:	Frontline static libraries
 Summary(pl):	Biblioteki statyczne Frontline
 Group:		X11/Development/Libraries
-Requires:	%{name}-devel = %{version}
+Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Frontline static libraries.
@@ -85,7 +85,7 @@ Biblioteki statyczne Frontline.
 Summary:	GIMP Frontline plugin
 Summary(pl):	Wtyczka Frontline dla GIMPa
 Group:		X11/Libraries
-Requires:	%{name}-libs = %{version}
+Requires:	%{name}-libs = %{version}-%{release}
 
 %description -n gimp-plugin-frontline
 GIMP frontline plugin - you can launch frontline from the GIMP menu.
@@ -96,7 +96,9 @@ GIMPa.
 
 %prep
 %setup -q
-%patch -p1
+%patch0 -p1
+
+echo 'Categories=Graphics;VectorGraphics;' >> frontline.desktop
 
 %build
 %{!?with_gimp:echo 'AC_DEFUN([AM_PATH_GIMP],[$3])' >> acinclude.m4}
@@ -113,7 +115,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
-	Graphicsdir=%{_applnkdir}/Graphics \
+	Graphicsdir=%{_desktopdir} \
 	m4datadir=%{_aclocaldir} \
 	pkgconfigdir=%{_pkgconfigdir}
 
@@ -133,13 +135,13 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/frontline
 %{_datadir}/mime-info/*
-%{_applnkdir}/Graphics/*.desktop
+%{_desktopdir}/*.desktop
 
 %files libs -f %{name}.lang
 %defattr(644,root,root,755)
 %doc AUTHORS BUGS ChangeLog NEWS README TODO {CHANGES,README,TODO}.gundo
-%{_libdir}/lib*.so.*.*
-%{_pixmapsdir}/*
+%attr(755,root,root) %{_libdir}/lib*.so.*.*.*
+%{_pixmapsdir}/*.png
 
 %files devel
 %defattr(644,root,root,755)
