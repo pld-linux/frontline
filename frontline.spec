@@ -2,7 +2,7 @@ Summary:	GUI FRONT end for autotrace that extracts outLINE from images
 Summary(pl):	Graficzny interfejs do autotrace wyci±gaj±cego obrysy z obrazków
 Name:		frontline
 Version:	0.5.4
-Release:	1
+Release:	2
 License:	GPL
 Group:		X11/Applications/Graphics
 Source0:	ftp://ftp.sourceforge.net/pub/sourceforge/autotrace/%{name}-%{version}.tar.gz
@@ -21,16 +21,17 @@ BuildRequires:	popt-devel
 Requires:	%{name}-libs = %{version}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
+%define		gimpplugindir	%(gimp-config --gimpplugindir)
 
 %description
 Frontline provides a GTK+/GNOME based GUI front end for autotrace
-(http://autotrace.sourceforge.net). This package contains the
+(http://autotrace.sourceforge.net/). This package contains the
 `fontline' command, which runs as a stand alone program. It will work
 well with Gnome desktop and nautilus.
    
 %description -l pl
 Frontline udostêpnia oparty na GTK+/GNOME graficzny interfejs do
-autotrace (http://autotrace.sourceforge.net). Ten pakiet zawiera
+autotrace (http://autotrace.sourceforge.net/). Ten pakiet zawiera
 polecenie "frontline", dzia³aj±ce jako samodzielny program. Dzia³a
 dobrze z pulpitem GNOME i nautilusem.
 
@@ -145,4 +146,4 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n gimp-plugin-frontline
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/gimp/*/plug-ins/trace
+%attr(755,root,root) %{gimpplugindir}/plug-ins/trace
