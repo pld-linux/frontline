@@ -33,7 +33,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Frontline provides a GTK+/GNOME based GUI front end for autotrace
 (http://autotrace.sourceforge.net/). This package contains the
 `frontline' command, which runs as a stand alone program. It will work
-well with Gnome desktop and nautilus.
+well with GNOME desktop and nautilus.
 
 %description -l pl
 Frontline udostêpnia oparty na GTK+/GNOME graficzny interfejs do
