@@ -21,7 +21,6 @@ BuildRequires:	popt-devel
 Requires:	%{name}-libs = %{version}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_prefix		/usr/X11R6
 
 %description
 Frontline provides a GTK+/GNOME based GUI front end for autotrace
