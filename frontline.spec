@@ -1,3 +1,7 @@
+#
+# Conditional build:
+# _without_gimp	- without GIMP 1.2.x plugin
+#
 Summary:	GUI FRONT end for autotrace that extracts outLINE from images
 Summary(pl):	Graficzny interfejs do autotrace wyci±gaj±cego obrysy z obrazków
 Name:		frontline
@@ -12,7 +16,8 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	autotrace-devel >= 0.31.1
 BuildRequires:	gettext-devel
-BuildRequires:	gimp-devel >= 1.2.1
+%{!?_without_gimp:BuildRequires:	gimp-devel >= 1.2.1}
+%{!?_without_gimp:BuildRequires:	gimp-devel < 1.3}
 BuildRequires:	gnome-libs-devel >= 1.4.0
 BuildRequires:	imlib-devel >= 1.8.2
 BuildRequires:	libart_lgpl >= 2.3.8
@@ -90,6 +95,7 @@ GIMPa.
 %patch -p1
 
 %build
+%{?_without_gimp:echo 'AC_DEFUN([AM_PATH_GIMP],[$3])' >> acinclude.m4}
 %{__libtoolize}
 %{__aclocal} -I %{_aclocaldir}/gnome
 %{__autoconf}
@@ -144,6 +150,8 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{_libdir}/lib*.a
 
+%if 0%{!?_without_gimp:1}
 %files -n gimp-plugin-frontline
 %defattr(644,root,root,755)
 %attr(755,root,root) %{gimpplugindir}/plug-ins/trace
+%endif
