@@ -27,7 +27,7 @@ BuildRequires:	popt-devel
 Requires:	%{name}-libs = %{version}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		gimpplugindir	%(gimp-config --gimpplugindir)
+%define		gimpplugindir	%(gimptool --gimpplugindir)
 
 %description
 Frontline provides a GTK+/GNOME based GUI front end for autotrace
