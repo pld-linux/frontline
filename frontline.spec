@@ -1,12 +1,12 @@
 #
 # Conditional build:
-%bcond_without	gimp	# without GIMP 1.2.x plugin
+%bcond_with	gimp	# without GIMP 1.2.x plugin
 #
 Summary:	GUI FRONT end for autotrace that extracts outLINE from images
 Summary(pl):	Graficzny interfejs do autotrace wyci±gaj±cego obrysy z obrazków
 Name:		frontline
 Version:	0.5.4
-Release:	3
+Release:	4
 License:	GPL
 Group:		X11/Applications/Graphics
 Source0:	http://dl.sourceforge.net/autotrace/%{name}-%{version}.tar.gz
