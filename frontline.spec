@@ -10,6 +10,7 @@ Release:	2
 License:	GPL
 Group:		X11/Applications/Graphics
 Source0:	http://dl.sourceforge.net/autotrace/%{name}-%{version}.tar.gz
+# Source0-md5:	5fc2c3459b153dbc2b3138c1133f927e
 Patch0:		%{name}-shared.patch
 URL:		http://autotrace.sourceforge.net/frontline/
 BuildRequires:	autoconf
