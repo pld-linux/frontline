@@ -97,6 +97,7 @@ GIMPa.
 
 %build
 %{?_without_gimp:echo 'AC_DEFUN([AM_PATH_GIMP],[$3])' >> acinclude.m4}
+%{__gettextize}
 %{__libtoolize}
 %{__aclocal} -I %{_aclocaldir}/gnome
 %{__autoconf}
