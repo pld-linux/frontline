@@ -1,0 +1,113 @@
+diff -Nur frontline-0.5.4.orig/configure.in frontline-0.5.4/configure.in
+--- frontline-0.5.4.orig/configure.in	Tue Nov 12 06:28:53 2002
++++ frontline-0.5.4/configure.in	Thu Dec 19 00:40:21 2002
+@@ -13,7 +13,7 @@
+ AM_SANITY_CHECK
+ AC_PROG_INSTALL
+ AC_PROG_AWK
+-AC_PROG_RANLIB
++AC_PROG_LIBTOOL
+ 
+ # Checks for header files.
+ AC_HEADER_STDC
+@@ -66,7 +66,7 @@
+ dnl 
+ dnl popt
+ dnl
+-AC_CHECK_LIB(popt,poptPrintHelp,,AC_MSG_ERROR(*** Cannot find popt))
++AC_CHECK_LIB(popt,poptPrintHelp,[AC_DEFINE(HAVE_LIBPOPT)],AC_MSG_ERROR(*** Cannot find popt))
+ 
+ dnl
+ dnl Imlib
+@@ -80,4 +80,4 @@
+ frontline.spec
+ frontline/Makefile
+ gundo/Makefile
+-gimp/Makefile],[chmod a+x frontline-config])
+\ No newline at end of file
++gimp/Makefile],[chmod a+x frontline-config])
+diff -Nur frontline-0.5.4.orig/frontline/Makefile.am frontline-0.5.4/frontline/Makefile.am
+--- frontline-0.5.4.orig/frontline/Makefile.am	Thu Oct 24 19:06:07 2002
++++ frontline-0.5.4/frontline/Makefile.am	Thu Dec 19 00:40:03 2002
+@@ -9,9 +9,9 @@
+ 	-DLOCALEDIR=\""$(datadir)/locale"\"             \
+         -DGNOME_ICONDIR=\""$(datadir)/pixmaps"\"
+ 
+-AM_CFLAGS=-g -Wall 
++AM_CFLAGS=-Wall 
+ 
+-lib_LIBRARIES=libfrontline.a
++lib_LTLIBRARIES=libfrontline.la
+ bin_PROGRAMS= frontline
+ 
+ frontlineincludedir=$(includedir)/frontline
+@@ -26,7 +26,7 @@
+ 	fl_fsel.h				\
+ 	fl_ask.h
+ 
+-libfrontline_a_SOURCES=				\
++libfrontline_la_SOURCES=				\
+ 	fl_dialog.c				\
+ 	fl_utils.c				\
+ 	fl_opt.c				\
+@@ -48,14 +48,12 @@
+ 
+ # Don't use popt in gnome. Instead use libpop directly
+ # because popt in gnome-1.4 doesn't support FLOAT args.
+-frontline_LDADD= $(LIBART2_LIBS)				\
+-                 $(top_builddir)/frontline/libfrontline.a	\
++libfrontline_la_LIBADD= $(LIBART2_LIBS)				\
+ 		 $(INTLLIBS)					\
+-                 $(top_builddir)/gundo/libgundo.a		\
++                 $(top_builddir)/gundo/libgundo.la		\
+                  -lpopt						\
+                  $(GNOME_LIBDIR)				\
+                  $(GNOMEUI_LIBS)				\
+-                 $(AUTOTRACE_LIBS) 
+-# /home/jet/src/popt-1.6.3/.libs/libpopt.a \
+-#-lpopt \
+-
++                 $(AUTOTRACE_LIBS)
++			
++frontline_LDADD= $(top_builddir)/frontline/libfrontline.la
+diff -Nur frontline-0.5.4.orig/gimp/Makefile.am frontline-0.5.4/gimp/Makefile.am
+--- frontline-0.5.4.orig/gimp/Makefile.am	Fri Oct 25 06:36:40 2002
++++ frontline-0.5.4/gimp/Makefile.am	Thu Dec 19 00:40:03 2002
+@@ -10,18 +10,12 @@
+ AM_CPPFLAGS = -DG_LOG_DOMAIN=\"trace-plugin\"		\
+ 	      -DLOCALEDIR=\""$(datadir)/locale"\"
+ 
+-AM_CFLAGS   = -g -Wall
++AM_CFLAGS   = -Wall
+ 
+-libexecdir = $(GIMP_PLUGIN_DIR)/plug-ins
+-libexec_PROGRAMS = trace
++plugindir = $(GIMP_PLUGIN_DIR)/plug-ins
++plugin_PROGRAMS = trace
+ trace_SOURCES    = trace.c
+-trace_LDADD      = $(LIBART2_LIBS)\
+-	$(top_builddir)/frontline/libfrontline.a	\
+-	$(INTLLIBS)					\
+-	$(top_builddir)/gundo/libgundo.a		\
+-	-lpopt						\
+-	$(GNOME_LIBDIR)					\
+-	$(GNOMEUI_LIBS)					\
+-	$(GIMP_LIBS)					\
+-	$(AUTOTRACE_LIBS) 
++trace_LDADD      = \
++	$(top_builddir)/frontline/libfrontline.la	\
++	$(GIMP_LIBS)
+ endif
+diff -Nur frontline-0.5.4.orig/gundo/Makefile.am frontline-0.5.4/gundo/Makefile.am
+--- frontline-0.5.4.orig/gundo/Makefile.am	Fri Oct 11 00:47:03 2002
++++ frontline-0.5.4/gundo/Makefile.am	Thu Dec 19 00:40:03 2002
+@@ -1,6 +1,7 @@
+ EXTRA_DIST=CHANGES
+ INCLUDES = $(GNOME_INCLUDEDIR) -I$(top_srcidr)/gundo
+-lib_LIBRARIES = libgundo.a
++lib_LTLIBRARIES = libgundo.la
+ gundoincludedir=$(includedir)/gundo
+ gundoinclude_HEADERS=gundo.h gundo_ui.h
+-libgundo_a_SOURCES = gundo.c gundo_ui.c
++libgundo_la_SOURCES = gundo.c gundo_ui.c
++libgundo_la_LIBADD = -L/usr/X11R6/lib -lgtk
