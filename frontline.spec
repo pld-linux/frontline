@@ -1,12 +1,12 @@
 #
 # Conditional build:
-# _without_gimp	- without GIMP 1.2.x plugin
+%bcond_without	gimp	# without GIMP 1.2.x plugin
 #
 Summary:	GUI FRONT end for autotrace that extracts outLINE from images
 Summary(pl):	Graficzny interfejs do autotrace wyci±gaj±cego obrysy z obrazków
 Name:		frontline
 Version:	0.5.4
-Release:	2
+Release:	3
 License:	GPL
 Group:		X11/Applications/Graphics
 Source0:	http://dl.sourceforge.net/autotrace/%{name}-%{version}.tar.gz
@@ -17,17 +17,20 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	autotrace-devel >= 0.31.1
 BuildRequires:	gettext-devel
-%{!?_without_gimp:BuildRequires:	gimp-devel >= 1.2.1}
-%{!?_without_gimp:BuildRequires:	gimp-devel < 1.3}
+%{?with_gimp:BuildRequires:	gimp-devel >= 1.2.1}
+%{?with_gimp:BuildRequires:	gimp-devel < 1.3}
 BuildRequires:	gnome-libs-devel >= 1.4.0
 BuildRequires:	imlib-devel >= 1.8.2
 BuildRequires:	libart_lgpl >= 2.3.8
 BuildRequires:	libtool
+BuildRequires:	pkgconfig
 BuildRequires:	popt-devel
 Requires:	%{name}-libs = %{version}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
+%if %{with gimp}
 %define		gimpplugindir	%(gimptool --gimpplugindir)
+%endif
 
 %description
 Frontline provides a GTK+/GNOME based GUI front end for autotrace
@@ -96,7 +99,7 @@ GIMPa.
 %patch -p1
 
 %build
-%{?_without_gimp:echo 'AC_DEFUN([AM_PATH_GIMP],[$3])' >> acinclude.m4}
+%{!?with_gimp:echo 'AC_DEFUN([AM_PATH_GIMP],[$3])' >> acinclude.m4}
 %{__gettextize}
 %{__libtoolize}
 %{__aclocal} -I %{_aclocaldir}/gnome
@@ -152,7 +155,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{_libdir}/lib*.a
 
-%if 0%{!?_without_gimp:1}
+%if %{with gimp}
 %files -n gimp-plugin-frontline
 %defattr(644,root,root,755)
 %attr(755,root,root) %{gimpplugindir}/plug-ins/trace
