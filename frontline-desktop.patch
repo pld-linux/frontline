@@ -1,0 +1,15 @@
+--- frontline-0.5.4/frontline.desktop.orig	Fri Jul 16 10:24:03 2004
++++ frontline-0.5.4/frontline.desktop	Fri Jul 16 10:23:56 2004
+@@ -1,7 +1,11 @@
+ [Desktop Entry]
+ Name=Frontline
+ Comment=GUI frontend for autotrace
++Comment[pl]=Graficzny interfejs do autotrace
+ Exec=frontline
+-Terminal=0
++Terminal=false
+ Type=Application
+ Icon=frontline.png
++Categories=GTK;GNOME;Graphics;VectorGraphics;
++Encoding=UTF-8
++# vi: encoding=utf-8
