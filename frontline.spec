@@ -17,7 +17,7 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	autotrace-devel >= 0.31.1
 BuildRequires:	gettext-devel
-%{?with_gimp:BuildRequires:	gimp-devel >= 1.2.1}
+%{?with_gimp:BuildRequires:	gimp-devel >= 1:1.2.1}
 %{?with_gimp:BuildRequires:	gimp-devel < 1.3}
 BuildRequires:	gnome-libs-devel >= 1.4.0
 BuildRequires:	imlib-devel >= 1.8.2
