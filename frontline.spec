@@ -6,12 +6,13 @@ Summary:	GUI FRONT end for autotrace that extracts outLINE from images
 Summary(pl):	Graficzny interfejs do autotrace wyci±gaj±cego obrysy z obrazków
 Name:		frontline
 Version:	0.5.4
-Release:	6
+Release:	7
 License:	GPL
 Group:		X11/Applications/Graphics
 Source0:	http://dl.sourceforge.net/autotrace/%{name}-%{version}.tar.gz
 # Source0-md5:	5fc2c3459b153dbc2b3138c1133f927e
 Patch0:		%{name}-shared.patch
+Patch1:		%{name}-desktop.patch
 URL:		http://autotrace.sourceforge.net/frontline/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -97,8 +98,7 @@ GIMPa.
 %prep
 %setup -q
 %patch0 -p1
-
-echo 'Categories=Graphics;VectorGraphics;' >> frontline.desktop
+%patch1 -p1
 
 %build
 %{!?with_gimp:echo 'AC_DEFUN([AM_PATH_GIMP],[$3])' >> acinclude.m4}
