@@ -6,7 +6,7 @@ Summary:	GUI FRONT end for autotrace that extracts outLINE from images
 Summary(pl):	Graficzny interfejs do autotrace wyci±gaj±cego obrysy z obrazków
 Name:		frontline
 Version:	0.5.4
-Release:	9
+Release:	10
 License:	GPL
 Group:		X11/Applications/Graphics
 Source0:	http://dl.sourceforge.net/autotrace/%{name}-%{version}.tar.gz
