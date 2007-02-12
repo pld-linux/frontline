@@ -3,7 +3,7 @@
 %bcond_with	gimp	# build GIMP (1.2.x only) plugin
 #
 Summary:	GUI FRONT end for autotrace that extracts outLINE from images
-Summary(pl):	Graficzny interfejs do autotrace wyci眊aj眂ego obrysy z obrazk體
+Summary(pl.UTF-8):   Graficzny interfejs do autotrace wyci膮gaj膮cego obrysy z obrazk贸w
 Name:		frontline
 Version:	0.5.4
 Release:	12
@@ -39,59 +39,59 @@ Frontline provides a GTK+/GNOME based GUI front end for autotrace
 `frontline' command, which runs as a stand alone program. It will work
 well with GNOME desktop and nautilus.
 
-%description -l pl
-Frontline udost阷nia oparty na GTK+/GNOME graficzny interfejs do
+%description -l pl.UTF-8
+Frontline udost臋pnia oparty na GTK+/GNOME graficzny interfejs do
 autotrace (http://autotrace.sourceforge.net/). Ten pakiet zawiera
-polecenie "frontline", dzia砤j眂e jako samodzielny program. Dzia砤
+polecenie "frontline", dzia艂aj膮ce jako samodzielny program. Dzia艂a
 dobrze z pulpitem GNOME i nautilusem.
 
 %package libs
 Summary:	Frontline shared libraries
-Summary(pl):	Biblioteki wsp蟪dzielone Frontline
+Summary(pl.UTF-8):   Biblioteki wsp贸艂dzielone Frontline
 Group:		X11/Libraries
 
 %description libs
 This package contains Frontline shared libraries, used by all versions
 of Frontline GUI.
 
-%description libs -l pl
-Ten program zawiera biblioteki wsp蟪dzielone Frontline, u縴wane przez
+%description libs -l pl.UTF-8
+Ten program zawiera biblioteki wsp贸艂dzielone Frontline, u偶ywane przez
 wszystkie wersje interfejsu Frontline.
 
 %package devel
 Summary:	Frontline development files
-Summary(pl):	Pliki dla programist體 u縴waj眂ych Frontline
+Summary(pl.UTF-8):   Pliki dla programist贸w u偶ywaj膮cych Frontline
 Group:		X11/Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
 
 %description devel
 Frontline development files.
 
-%description devel -l pl
-Pliki dla programist體 u縴waj眂ych Frontline.
+%description devel -l pl.UTF-8
+Pliki dla programist贸w u偶ywaj膮cych Frontline.
 
 %package static
 Summary:	Frontline static libraries
-Summary(pl):	Biblioteki statyczne Frontline
+Summary(pl.UTF-8):   Biblioteki statyczne Frontline
 Group:		X11/Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Frontline static libraries.
 
-%description static -l pl
+%description static -l pl.UTF-8
 Biblioteki statyczne Frontline.
 
 %package -n gimp-plugin-frontline
 Summary:	GIMP Frontline plugin
-Summary(pl):	Wtyczka Frontline dla GIMPa
+Summary(pl.UTF-8):   Wtyczka Frontline dla GIMPa
 Group:		X11/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
 
 %description -n gimp-plugin-frontline
 GIMP frontline plugin - you can launch frontline from the GIMP menu.
 
-%description -n gimp-plugin-frontline -l pl
+%description -n gimp-plugin-frontline -l pl.UTF-8
 Wtyczka frontline dla GIMPa - pozwala na uruchomienie frontline z menu
 GIMPa.
 
