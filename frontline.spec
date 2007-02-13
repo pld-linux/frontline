@@ -3,7 +3,7 @@
 %bcond_with	gimp	# build GIMP (1.2.x only) plugin
 #
 Summary:	GUI FRONT end for autotrace that extracts outLINE from images
-Summary(pl.UTF-8):   Graficzny interfejs do autotrace wyciągającego obrysy z obrazków
+Summary(pl.UTF-8):	Graficzny interfejs do autotrace wyciągającego obrysy z obrazków
 Name:		frontline
 Version:	0.5.4
 Release:	12
@@ -47,7 +47,7 @@ dobrze z pulpitem GNOME i nautilusem.
 
 %package libs
 Summary:	Frontline shared libraries
-Summary(pl.UTF-8):   Biblioteki współdzielone Frontline
+Summary(pl.UTF-8):	Biblioteki współdzielone Frontline
 Group:		X11/Libraries
 
 %description libs
@@ -60,7 +60,7 @@ wszystkie wersje interfejsu Frontline.
 
 %package devel
 Summary:	Frontline development files
-Summary(pl.UTF-8):   Pliki dla programistów używających Frontline
+Summary(pl.UTF-8):	Pliki dla programistów używających Frontline
 Group:		X11/Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
 
@@ -72,7 +72,7 @@ Pliki dla programistów używających Frontline.
 
 %package static
 Summary:	Frontline static libraries
-Summary(pl.UTF-8):   Biblioteki statyczne Frontline
+Summary(pl.UTF-8):	Biblioteki statyczne Frontline
 Group:		X11/Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
@@ -84,7 +84,7 @@ Biblioteki statyczne Frontline.
 
 %package -n gimp-plugin-frontline
 Summary:	GIMP Frontline plugin
-Summary(pl.UTF-8):   Wtyczka Frontline dla GIMPa
+Summary(pl.UTF-8):	Wtyczka Frontline dla GIMPa
 Group:		X11/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
 
