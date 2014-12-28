@@ -17,7 +17,7 @@ URL:		http://autotrace.sourceforge.net/frontline/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	autotrace-devel >= 0.31.1
-BuildRequires:	gettext-devel
+BuildRequires:	gettext-tools
 %{?with_gimp:BuildRequires:	gimp-devel >= 1:1.2.1}
 %{?with_gimp:BuildRequires:	gimp-devel < 1.3}
 BuildRequires:	gnome-libs-devel >= 1.4.0
